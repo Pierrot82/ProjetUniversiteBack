@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
@@ -25,30 +26,23 @@ import lombok.ToString.Exclude;
 @Data @NoArgsConstructor @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @PrimaryKeyJoinColumn(name = "id")
-public class Etudiant extends Personne{
+public class Enseignant extends Personne{
 
 //	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private LocalDate dateInscription;
-	
-	
-	@ManyToMany
-	@Exclude
-	@JoinTable(name = "Etu_formation",
-	joinColumns = @JoinColumn(name = "id_etudiant"),
-	inverseJoinColumns = @JoinColumn(name = "id_formation"))
-	private List<Formation> listeFormation;
+	private LocalDate dateEmbauche;
 	
 	@ManyToMany
 	@Exclude
 	@JoinTable(name = "Etu_enseignant",
-	joinColumns = @JoinColumn(name = "id_etudiant"),
-	inverseJoinColumns = @JoinColumn(name = "id_enseignant"))
-	private List<Enseignant> listeEnseignant;
+	joinColumns = @JoinColumn(name = "id_enseignant"),
+	inverseJoinColumns = @JoinColumn(name = "id_etudiant"))
+	private List<Etudiant> listeEtu;
+	
+	
+	@ManyToOne
+	private Matiere matiere;
 	
 	
 
-	
-	
-	
 }

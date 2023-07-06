@@ -11,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,5 +34,8 @@ public class Matiere {
 	@OneToMany(mappedBy = "matiere")
 	@Exclude
 	private List<Examen> listeExam;
+	
+	@OneToMany(mappedBy = "matiere")
+	private List<Enseignant> listeEnseignant;
 
 }
