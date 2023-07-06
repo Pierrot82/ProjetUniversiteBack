@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,7 +21,8 @@ import lombok.RequiredArgsConstructor;
 @Table
 @Data
 @NoArgsConstructor @AllArgsConstructor @RequiredArgsConstructor
-public class Personne {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Personne {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +36,7 @@ public class Personne {
 	@NonNull
 	@Column(nullable = true, length = 20)
 	protected LocalDate dateNaissance;
+	
+	
 
 }
