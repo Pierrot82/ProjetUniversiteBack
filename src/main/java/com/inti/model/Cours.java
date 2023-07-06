@@ -1,5 +1,7 @@
 package com.inti.model;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
@@ -7,10 +9,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString.Exclude;
 
 @Entity @Table
 @Data @NoArgsConstructor @AllArgsConstructor
@@ -21,6 +28,15 @@ public class Cours {
 	private int idCours;
 	@Column(unique = true, nullable = false, length = 50)
 	private String nom;
+	
+	
+	@OneToMany(mappedBy = "cours")
+	@Exclude
+	List<SupportCours> ListeSup;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_cours")
+	private Matiere matiere;
 
 
 }
