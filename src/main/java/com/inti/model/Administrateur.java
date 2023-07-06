@@ -27,8 +27,6 @@ public class Administrateur extends Personne{
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	
-	
-	
 	private LocalDate dateEmbauche;
 	
 

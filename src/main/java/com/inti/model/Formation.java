@@ -27,8 +27,6 @@ import lombok.ToString.Exclude;
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Formation {
 
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
