@@ -14,10 +14,11 @@ import lombok.NoArgsConstructor;
 @Entity @Table
 @Data @NoArgsConstructor @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
-public class Matiere {
+public class Cours {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idMatiere;
+	private int idCours;
 	private String nom;
+
 
 }
