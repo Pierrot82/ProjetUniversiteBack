@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.model.Enseignant;
+import com.inti.model.Etudiant;
+import com.inti.model.Examen;
 import com.inti.repository.IEnseignantRepository;
 
 @RestController
@@ -30,12 +32,18 @@ public class EnseignantController {
 		return ienr.findAll();
 	}
 
+	@GetMapping("getEnseignant/{id}")
+	public Enseignant getEnseignant(@PathVariable("id") int id)
+	{
+		return ienr.getReferenceById(id);
+	}
+	
 	@PostMapping("saveEnseignant")
 	public Enseignant saveEnseignant(@RequestBody Enseignant en) {
 	    return ienr.save(en);
 	}
 
-	@PutMapping("modifienrEnseignant/{id}")
+	@PutMapping("modifierEnseignant")
 	public boolean modifienrEnseignant(@PathVariable("id") int id, @RequestBody Enseignant en) {
 	    Enseignant existingEnseignant = ienr.getReferenceById(id);
 	    if (existingEnseignant != null) {
