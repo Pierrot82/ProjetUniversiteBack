@@ -27,44 +27,47 @@ import com.inti.repository.ICopieRepository;
 public class CopieController {
 
 	@Autowired
-	ICopieRepository iar;
+	ICopieRepository icr;
 	
 	
 	@PostMapping("ajoutCopie")
-	public Copie ajoutCopie(@RequestBody Copie a ) {
-		return iar.save(a);
+	public Copie ajoutCopie(@RequestBody Copie c ) {
+		return icr.save(c);
 	}
+	
 	
 	@GetMapping("getListeCopie")
 	public List<Copie> getListeCopie(){
-		return iar.findAll();
+		return icr.findAll();
 	}
 	
-	
+	////////////////////////////////////
 	@GetMapping("getCopie/{id}")
 	public Copie getCopie(@PathVariable("id") int id) {
 		try {
-			Copie a = iar.getReferenceById(id);
-			return a;
+			Copie c = icr.getReferenceById(id);
+			return c;
 		} catch (Exception e) {
 			return null;
 		}	
 	}
 	
+	////////////////////////////////////
 	@DeleteMapping("deleteCopie/{id}")
 	public boolean deleteCopie(@PathVariable("id") int id) {
 		try {
-			iar.delete(iar.getReferenceById(id));
+			icr.delete(icr.getReferenceById(id));
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
-	
+
+	////////////////////////////////////
 	@PostMapping("updateCopie")
-	public boolean updateCopie(@RequestBody Copie a) {
-		if (iar.getReferenceById(a.getId()) != null) {
-			iar.save(a);
+	public boolean updateCopie(@RequestBody Copie c) {
+		if (icr.getReferenceById(c.get()) != null) {
+			icr.save(c);
 			return true;
 		}
 		return false;
