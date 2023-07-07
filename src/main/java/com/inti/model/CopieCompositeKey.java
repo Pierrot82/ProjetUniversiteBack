@@ -1,29 +1,27 @@
 package com.inti.model;
 
+import java.io.Serializable;
 
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table
+@Embeddable
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Copie {
+public class CopieCompositeKey implements Serializable {
 	
-	@EmbeddedId
-	private CopieCompositeKey idCopie;
-	
-	private double note;
 
-	@Id
+	
+	@ManyToOne
+	@JoinColumn(name="id")
+	private Etudiant etudiant;
+
+
+	
 	@ManyToOne
 	@JoinColumn(name="id_examen")
 	private Examen examen;

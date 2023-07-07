@@ -7,12 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import com.inti.model.Administrateur;
 import com.inti.model.Copie;
+import com.inti.model.CopieCompositeKey;
 
 import lombok.Value;
 
 
 @Repository
-public interface ICopieRepository extends JpaRepository<Copie, Integer>{
-	
+public interface ICopieRepository extends JpaRepository<Copie, CopieCompositeKey>{
+
 
 }

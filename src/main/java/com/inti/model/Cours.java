@@ -45,5 +45,7 @@ public class Cours {
 	@JoinColumn(name = "id_matiere")
 	private Matiere matiere;
 
+	
+	
 
 }
