@@ -23,9 +23,4 @@ public class Copie {
 	
 	private double note;
 
-	@Id
-	@ManyToOne
-	@JoinColumn(name="id_examen")
-	private Examen examen;
-
 }

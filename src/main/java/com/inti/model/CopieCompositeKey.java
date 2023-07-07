@@ -17,14 +17,12 @@ import lombok.ToString.Exclude;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class CopieCompositeKey implements Serializable {
 	
-	@Exclude
-	@JsonIgnore
+
 	@ManyToOne
 	@JoinColumn(name="id")
 	private Etudiant etudiant;
 
-	@Exclude
-	@JsonIgnore
+
 	@ManyToOne
 	@JoinColumn(name="id_examen")
 	private Examen examen;
