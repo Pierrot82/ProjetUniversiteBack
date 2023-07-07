@@ -12,22 +12,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.model.Copie;
+import com.inti.model.CopieCompositeKey;
+import com.inti.model.Etudiant;
+import com.inti.model.Examen;
 import com.inti.repository.ICopieRepository;
+import com.inti.repository.IEtudiantRepository;
+import com.inti.repository.IExamenRepository;
 
 
 
 
 
 @RestController
-
-//@RequestMapping("Copie")
-
 @CrossOrigin(origins = "http://localhost:4200")
-
 public class CopieController {
 
 	@Autowired
 	ICopieRepository icr;
+	
+	@Autowired
+	IEtudiantRepository iEtur;
+	
+	@Autowired
+	IExamenRepository iExamr;
 	
 	
 	@PostMapping("ajoutCopie")
@@ -42,21 +49,26 @@ public class CopieController {
 	}
 	
 	////////////////////////////////////
-	@GetMapping("getCopie/{id}")
-	public Copie getCopie(@PathVariable("id") int id) {
+	@GetMapping("getCopie/{idEtudiant}/{idExamen}")
+	public Copie getCopie(@PathVariable("idEtudiant") int idEtudiant, @PathVariable("idExamen") int idExamen) {
 		try {
-			Copie c = icr.getReferenceById(id);
-			return c;
+			Etudiant etu = iEtur.getReferenceById(idEtudiant);
+			Examen exam = iExamr.getReferenceById(idExamen);
+			CopieCompositeKey id = new CopieCompositeKey(etu, exam);
+			return icr.getReferenceById(id);
 		} catch (Exception e) {
 			return null;
 		}	
 	}
 	
 	////////////////////////////////////
-	@DeleteMapping("deleteCopie/{id}")
-	public boolean deleteCopie(@PathVariable("id") int id) {
+	@DeleteMapping("deleteCopie/{idEtudiant}/{idExamen}")
+	public boolean deleteCopie(@PathVariable("idEtudiant") int idEtudiant, @PathVariable("idExamen") int idExamen) {
 		try {
-			icr.delete(icr.getReferenceById(id));
+			Etudiant etu = iEtur.getReferenceById(idEtudiant);
+			Examen exam = iExamr.getReferenceById(idExamen);
+			CopieCompositeKey id = new CopieCompositeKey(etu, exam);
+			icr.deleteById(id);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -66,11 +78,11 @@ public class CopieController {
 	////////////////////////////////////
 	@PostMapping("updateCopie")
 	public boolean updateCopie(@RequestBody Copie c) {
-		if (icr.getReferenceById(c.get()) != null) {
+		CopieCompositeKey id = c.getIdCopie();
+		if (icr.findById(id).isPresent()) {
 			icr.save(c);
 			return true;
 		}
 		return false;
-			
 	}
 }

@@ -47,7 +47,7 @@ public class Etudiant extends Personne{
 	private List<Enseignant> listeEnseignant;
 	
 	
-	@OneToMany(mappedBy = "etudiant")
+	@OneToMany(mappedBy = "idCopie.etudiant")
 	@Exclude
 	private List<Copie> copie;
 	
