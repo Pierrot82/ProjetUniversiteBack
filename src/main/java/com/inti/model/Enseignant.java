@@ -2,6 +2,7 @@ package com.inti.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -32,6 +33,7 @@ public class Enseignant extends Personne{
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private LocalDate dateEmbauche;
 	
+	@JsonIgnore
 	@ManyToMany
 	@Exclude
 	@JoinTable(name = "Etu_enseignant",
@@ -39,7 +41,8 @@ public class Enseignant extends Personne{
 	inverseJoinColumns = @JoinColumn(name = "id_etudiant"))
 	private List<Etudiant> listeEtu;
 	
-	
+	@Exclude
+	@JsonIgnore
 	@ManyToOne
 	private Matiere matiere;
 	

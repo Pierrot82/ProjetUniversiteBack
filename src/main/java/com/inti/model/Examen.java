@@ -3,6 +3,7 @@ package com.inti.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
@@ -36,17 +37,21 @@ public class Examen {
 	@Column(nullable = false)
 	private double duree;
 	
+	@Exclude
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "id_correction")
 	private Correction correction;
 	
+	@Exclude
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_matiere")
 	private Matiere matiere;
 	
 	
 	
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "idCopie.examen")
 	@Exclude
 	private List<Copie> copie;
