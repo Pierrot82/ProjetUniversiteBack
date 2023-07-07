@@ -12,35 +12,37 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inti.model.Cours;
-import com.inti.repository.ICoursRepository;
+import com.inti.model.Examen;
+import com.inti.repository.IExamenRepository;
+
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class CoursController {
+public class ExamenController {
 	
 	@Autowired
-	ICoursRepository icr;
+	IExamenRepository iexr;
 	
-	@GetMapping("listeCours")
-	public List<Cours> listeCours()
+	@GetMapping("listeExamen")
+	public List<Examen> listeExamen()
 	{
-		return icr.findAll();
+		return iexr.findAll();
 	}
 	
 	
-	@PostMapping("saveCours")
-	public Cours saveCours(@RequestBody Cours Cours)
+	@PostMapping("saveExamen")
+	public Examen saveExamen(@RequestBody Examen Examen)
 	{
-		return icr.save(Cours);
+		return iexr.save(Examen);
 	}
 	
-	@PutMapping("modifierCours")
-	public boolean modifierCours(@RequestBody Cours c)
+	@PutMapping("modifierExamen")
+	public boolean modifierExamen(@RequestBody Examen ex)
 	{
-		if(icr.getReferenceById(c.getIdCours())!= null)
+		if(iexr.getReferenceById(ex.getIdExamen())!= null)
 		{
-			icr.save(c);
+			iexr.save(ex);
 			return true;
 		}
 		
@@ -48,21 +50,21 @@ public class CoursController {
 		
 	}
 	
-	@DeleteMapping("deleteCours/{id}")
-	public boolean deleteCours(@PathVariable("id")int id)
+	@DeleteMapping("deleteExamen/{id}")
+	public boolean deleteExamen(@PathVariable("id")int id)
 	{
-//		Cours c = icr.getReferenceById(id);
+//		Examen cm = iexr.getReferenceById(id);
 //		if(c != null)
 //		{
-//			icr.delete(c);
+//			iexr.delete(c);
 //			return true;
 //		}
 //		
 //		return false;
 		try {
-			Cours c = icr.getReferenceById(id);
-			System.out.println("Cours : " + c);
-			icr.delete(c);
+			Examen ex = iexr.getReferenceById(id);
+			System.out.println("Examen : " + ex);
+			iexr.delete(ex);
 			return true;
 			
 		} catch (Exception e) {
@@ -70,10 +72,10 @@ public class CoursController {
 		}
 	}
 	
-	@GetMapping("getCours/{id}")
-	public Cours getCours(@PathVariable("id") int id)
+	@GetMapping("getExamen/{id}")
+	public Examen getExamen(@PathVariable("id") int id)
 	{
-		return icr.getReferenceById(id);
+		return iexr.getReferenceById(id);
 	}
 
 }
