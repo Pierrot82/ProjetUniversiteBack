@@ -1,6 +1,8 @@
 package com.inti.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -17,12 +19,12 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor
 
 
-//@PrimaryKeyJoinColumn(name = "id", name = "id_examen")
-//@PrimaryKeyJoinColumn(name = "id_examen")
 
 public class Copie {
 	
-	
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private int id_Copie;
 	
 	private double note;
 	
@@ -37,5 +39,5 @@ public class Copie {
 	@JoinColumn(name="id_examen")
 	private Examen examen;
 	
-	
+	ss
 }
