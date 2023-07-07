@@ -47,6 +47,13 @@ public class Etudiant extends Personne{
 	private List<Enseignant> listeEnseignant;
 	
 	
+	@OneToMany(mappedBy = "etudiant")
+	@Exclude
+	private List<Copie> copie;
+	
+	
+	
+	
 
 	
 	

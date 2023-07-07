@@ -35,7 +35,7 @@ public class Cours {
 	List<SupportCours> ListeSup;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_cours")
+	@JoinColumn(name = "id_matiere")
 	private Matiere matiere;
 
 
