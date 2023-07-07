@@ -3,6 +3,7 @@ package com.inti.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,39 +13,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.model.Enseignant;
+import com.inti.model.Etudiant;
+import com.inti.model.Examen;
 import com.inti.repository.IEnseignantRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class EnseignantController {
 	
 	@Autowired
 	IEnseignantRepository ienr;
 	
-	@GetMapping("test")
-    public String test() {
-        return "Hello World!";
-    }
 	
 	@GetMapping("listeEnseignant")
 	public List<Enseignant> listeEnseignant() {
 		return ienr.findAll();
 	}
 
+	@GetMapping("getEnseignant/{id}")
+	public Enseignant getEnseignant(@PathVariable("id") int id)
+	{
+		return ienr.getReferenceById(id);
+	}
+	
 	@PostMapping("saveEnseignant")
 	public Enseignant saveEnseignant(@RequestBody Enseignant en) {
 	    return ienr.save(en);
 	}
 
-	@PutMapping("modifienrEnseignant/{id}")
-	public boolean modifienrEnseignant(@PathVariable("id") int id, @RequestBody Enseignant en) {
-	    Enseignant existingEnseignant = ienr.getReferenceById(id);
+	@PutMapping("modifierEnseignant")
+
+	public boolean modifienrEnseignant(@RequestBody Enseignant en) {
+	    Enseignant existingEnseignant = ienr.getReferenceById(en.getId());
 	    if (existingEnseignant != null) {
-	        en.setId(id);
+//	        en.setId(id);
 	        ienr.save(en);
 	        return true;
 	    }
 	    return false;
 	}
+	
+
+	
+	
 	
 	@DeleteMapping("deleteEnseignant/{id}")
 	public boolean deleteEnseignant(@PathVariable("id") int id) {
@@ -55,4 +66,12 @@ public class EnseignantController {
 	    }
 	    return false;
 	}
+	
+
+	
+	
+	
+	
+	
+	
     }

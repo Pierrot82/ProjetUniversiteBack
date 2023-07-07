@@ -2,6 +2,7 @@ package com.inti.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
@@ -28,19 +29,19 @@ public class Cours {
 	private int idCours;
 	@Column(unique = true, nullable = false, length = 50)
 	private String nom;
-	
-	
-	
-	
+
 	public Cours(String nom) {
 		super();
 		this.nom = nom;
 	}
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "cours")
 	@Exclude
 	List<SupportCours> ListeSup;
 	
+	@Exclude
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_matiere")
 	private Matiere matiere;

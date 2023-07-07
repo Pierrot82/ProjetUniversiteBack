@@ -2,7 +2,7 @@ package com.inti.model;
 import java.time.LocalDate;
 import java.util.List;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
@@ -45,7 +45,7 @@ public class Formation {
 	@Column(length = 360)
 	private String description;
 	
-	
+	@JsonIgnore
 	@ManyToMany
 	@Exclude
 	@JoinTable(name = "Etu_formation",
