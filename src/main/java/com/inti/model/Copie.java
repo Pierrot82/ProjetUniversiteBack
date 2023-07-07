@@ -39,5 +39,4 @@ public class Copie {
 	@JoinColumn(name="id_examen")
 	private Examen examen;
 	
-	ss
 }

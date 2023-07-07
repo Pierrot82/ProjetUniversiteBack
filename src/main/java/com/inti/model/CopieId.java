@@ -6,6 +6,6 @@ import jakarta.persistence.Embeddable;
 public class CopieId  {
 	
 	
-	qq
+	
 
 }

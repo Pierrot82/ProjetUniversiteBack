@@ -30,6 +30,13 @@ public class Cours {
 	private String nom;
 	
 	
+	
+	
+	public Cours(String nom) {
+		super();
+		this.nom = nom;
+	}
+
 	@OneToMany(mappedBy = "cours")
 	@Exclude
 	List<SupportCours> ListeSup;
