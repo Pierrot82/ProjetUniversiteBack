@@ -22,10 +22,6 @@ public class EnseignantController {
 	@Autowired
 	IEnseignantRepository ienr;
 	
-	@GetMapping("test")
-    public String test() {
-        return "Hello World!";
-    }
 	
 	@GetMapping("listeEnseignant")
 	public List<Enseignant> listeEnseignant() {
