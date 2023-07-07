@@ -14,32 +14,35 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.model.Enseignant;
 import com.inti.model.Etudiant;
+import com.inti.model.Examen;
 import com.inti.repository.IEnseignantRepository;
 
 @RestController
-
 @CrossOrigin(origins = "http://localhost:4200")
 public class EnseignantController {
 	
 	@Autowired
 	IEnseignantRepository ienr;
 	
-	@GetMapping("test")
-    public String test() {
-        return "Hello World!";
-    }
 	
 	@GetMapping("listeEnseignant")
 	public List<Enseignant> listeEnseignant() {
 		return ienr.findAll();
 	}
 
+	@GetMapping("getEnseignant/{id}")
+	public Enseignant getEnseignant(@PathVariable("id") int id)
+	{
+		return ienr.getReferenceById(id);
+	}
+	
 	@PostMapping("saveEnseignant")
 	public Enseignant saveEnseignant(@RequestBody Enseignant en) {
 	    return ienr.save(en);
 	}
 
 	@PutMapping("modifierEnseignant")
+
 	public boolean modifienrEnseignant(@RequestBody Enseignant en) {
 	    Enseignant existingEnseignant = ienr.getReferenceById(en.getId());
 	    if (existingEnseignant != null) {
@@ -64,16 +67,7 @@ public class EnseignantController {
 	    return false;
 	}
 	
-	
-	@GetMapping("getEnseignant/{id}")
-	public Enseignant getEnseignant(@PathVariable("id") int id) {
-		try {
-			Enseignant ens = ienr.getReferenceById(id);
-			return ens;
-		} catch (Exception e) {
-			return null;
-		}	
-	}
+
 	
 	
 	
