@@ -1,5 +1,8 @@
 package com.inti.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,29 +18,13 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table
-
 @Data @NoArgsConstructor @AllArgsConstructor
-
-
-
 public class Copie {
 	
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	private int id_Copie;
+	@EmbeddedId
+	private CopieCompositeKey idCopie;
 	
 	private double note;
 	
-	
-	@Id
-	@ManyToOne
-	@JoinColumn(name="id")
-	private Etudiant etudiant;
 
-	@Id
-	@ManyToOne
-	@JoinColumn(name="id_examen")
-	private Examen examen;
-	
-	ss
 }

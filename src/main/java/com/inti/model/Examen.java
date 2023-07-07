@@ -47,7 +47,7 @@ public class Examen {
 	
 	
 	
-	@OneToMany(mappedBy = "examen")
+	@OneToMany(mappedBy = "idCopie.examen")
 	@Exclude
 	private List<Copie> copie;
 	
