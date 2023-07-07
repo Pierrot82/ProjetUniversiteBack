@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.model.Enseignant;
+import com.inti.model.Etudiant;
 import com.inti.repository.IEnseignantRepository;
 
 @RestController
@@ -35,16 +36,20 @@ public class EnseignantController {
 	    return ienr.save(en);
 	}
 
-	@PutMapping("modifienrEnseignant/{id}")
-	public boolean modifienrEnseignant(@PathVariable("id") int id, @RequestBody Enseignant en) {
-	    Enseignant existingEnseignant = ienr.getReferenceById(id);
+	@PutMapping("modifierEnseignant")
+	public boolean modifienrEnseignant(@RequestBody Enseignant en) {
+	    Enseignant existingEnseignant = ienr.getReferenceById(en.getId());
 	    if (existingEnseignant != null) {
-	        en.setId(id);
+//	        en.setId(id);
 	        ienr.save(en);
 	        return true;
 	    }
 	    return false;
 	}
+	
+
+	
+	
 	
 	@DeleteMapping("deleteEnseignant/{id}")
 	public boolean deleteEnseignant(@PathVariable("id") int id) {
@@ -55,4 +60,21 @@ public class EnseignantController {
 	    }
 	    return false;
 	}
+	
+	
+	@GetMapping("getEnseignant/{id}")
+	public Enseignant getEnseignant(@PathVariable("id") int id) {
+		try {
+			Enseignant ens = ienr.getReferenceById(id);
+			return ens;
+		} catch (Exception e) {
+			return null;
+		}	
+	}
+	
+	
+	
+	
+	
+	
     }
