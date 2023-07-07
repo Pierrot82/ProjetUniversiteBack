@@ -14,7 +14,6 @@ import lombok.Value;
 
 @Repository
 public interface ICopieRepository extends JpaRepository<Copie, CopieCompositeKey>{
-	
 
 
 }

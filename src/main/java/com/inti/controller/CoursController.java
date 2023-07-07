@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.model.Cours;
+import com.inti.model.Enseignant;
 import com.inti.repository.ICoursRepository;
 
 @RestController
@@ -35,17 +36,15 @@ public class CoursController {
 		return icr.save(Cours);
 	}
 	
-	@PutMapping("modifierCours")
-	public boolean modifierCours(@RequestBody Cours c)
-	{
-		if(icr.getReferenceById(c.getIdCours())!= null)
-		{
-			icr.save(c);
-			return true;
-		}
-		
-		return false;
-		
+	@PutMapping("modifierCours/{id}")
+	public boolean modifierCours(@PathVariable("id") int id, @RequestBody Cours c) {
+	    Cours existingCours = icr.getReferenceById(id);
+	    if (existingCours != null) {
+	        c.setIdCours(id);
+	        icr.save(c);
+	        return true;
+	    }
+	    return false;
 	}
 	
 	@DeleteMapping("deleteCours/{id}")

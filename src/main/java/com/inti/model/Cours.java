@@ -30,6 +30,10 @@ public class Cours {
 	@Column(unique = true, nullable = false, length = 50)
 	private String nom;
 
+	public Cours(String nom) {
+		super();
+		this.nom = nom;
+	}
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "cours")
@@ -42,5 +46,7 @@ public class Cours {
 	@JoinColumn(name = "id_matiere")
 	private Matiere matiere;
 
+	
+	
 
 }
