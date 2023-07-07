@@ -12,37 +12,37 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inti.model.Matiere;
-import com.inti.repository.IMatiereRepository;
+import com.inti.model.Postulant;
+import com.inti.repository.IPostulantRepository;
 
 
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class MatiereController {
+public class PostulantController {
 	
 	@Autowired
-	IMatiereRepository imr;
+	IPostulantRepository ipr;
 	
-	@GetMapping("listeMatiere")
-	public List<Matiere> listeMatiere()
+	@GetMapping("listePostulant")
+	public List<Postulant> listePostulant()
 	{
-		return imr.findAll();
+		return ipr.findAll();
 	}
 	
 	
-	@PostMapping("saveMatiere")
-	public Matiere saveMatiere(@RequestBody Matiere Matiere)
+	@PostMapping("savePostulant")
+	public Postulant savePostulant(@RequestBody Postulant Postulant)
 	{
-		return imr.save(Matiere);
+		return ipr.save(Postulant);
 	}
 	
-	@PutMapping("modifierMatiere")
-	public boolean modifierMatiere(@RequestBody Matiere m)
+	@PutMapping("modifierPostulant")
+	public boolean modifierPostulant(@RequestBody Postulant p)
 	{
-		if(imr.getReferenceById(m.getIdMatiere())!= null)
+		if(ipr.getReferenceById(p.getId())!= null)
 		{
-			imr.save(m);
+			ipr.save(p);
 			return true;
 		}
 		
@@ -50,21 +50,21 @@ public class MatiereController {
 		
 	}
 	
-	@DeleteMapping("deleteMatiere/{id}")
-	public boolean deleteMatiere(@PathVariable("id")int id)
+	@DeleteMapping("deletePostulant/{id}")
+	public boolean deletePostulant(@PathVariable("id")int id)
 	{
-//		Matiere cm = imr.getReferenceById(id);
+//		Postulant cm = ipr.getReferenceById(id);
 //		if(c != null)
 //		{
-//			imr.delete(c);
+//			ipr.delete(c);
 //			return true;
 //		}
 //		
 //		return false;
 		try {
-			Matiere m = imr.getReferenceById(id);
-			System.out.println("Matiere : " + m);
-			imr.delete(m);
+			Postulant p = ipr.getReferenceById(id);
+			System.out.println("Postulant : " + p);
+			ipr.delete(p);
 			return true;
 			
 		} catch (Exception e) {
@@ -72,10 +72,10 @@ public class MatiereController {
 		}
 	}
 	
-	@GetMapping("getMatiere/{id}")
-	public Matiere getMatiere(@PathVariable("id") int id)
+	@GetMapping("getPostulant/{id}")
+	public Postulant getPostulant(@PathVariable("id") int id)
 	{
-		return imr.getReferenceById(id);
+		return ipr.getReferenceById(id);
 	}
 
 }

@@ -48,8 +48,8 @@ public class SupportCoursController {
 		
 	}
 	
-	@DeleteMapping("deleteSupportCours/{idSupport}")
-	public boolean deleteSupportCours(@PathVariable("idSupport")int idSupport)
+	@DeleteMapping("deleteSupportCours/{id}")
+	public boolean deleteSupportCours(@PathVariable("id")int id)
 	{
 //		SupportCours c = iscr.getReferenceById(idSupport);
 //		if(c != null)
@@ -60,7 +60,7 @@ public class SupportCoursController {
 //		
 //		return false;
 		try {
-			SupportCours cs = iscr.getReferenceById(idSupport);
+			SupportCours cs = iscr.getReferenceById(id);
 			System.out.println("SupportCours : " + cs);
 			iscr.delete(cs);
 			return true;
@@ -70,10 +70,10 @@ public class SupportCoursController {
 		}
 	}
 	
-	@GetMapping("getSupportCours/{idSupport}")
-	public SupportCours getSupportCours(@PathVariable("idSupport") int idSupport)
+	@GetMapping("getSupportCours/{id}")
+	public SupportCours getSupportCours(@PathVariable("id") int id)
 	{
-		return iscr.getReferenceById(idSupport);
+		return iscr.getReferenceById(id);
 	}
 
 }
