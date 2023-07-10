@@ -56,7 +56,17 @@ public class Etudiant extends Personne{
 	
 	
 	
-
+	@JsonIgnore
+	@OneToMany(mappedBy = "etudiant")
+	@Exclude
+	private List<Discussion> listeDiscussion;
+	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "etudiant")
+	@Exclude
+	private List<Reponse> listeReponse;	
+	
 	
 	
 	
