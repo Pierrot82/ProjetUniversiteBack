@@ -19,10 +19,6 @@ import com.inti.repository.ICopieRepository;
 import com.inti.repository.IEtudiantRepository;
 import com.inti.repository.IExamenRepository;
 
-
-
-
-
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class CopieController {
