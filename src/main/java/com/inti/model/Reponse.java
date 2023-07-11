@@ -29,7 +29,7 @@ public class Reponse {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idReponse;
 	
-	@Column(unique = true, nullable = false, length = 50)
+	@Column(unique = true, nullable = false, length = 250)
 	private String reponse;
 	
 	private LocalDate date;
