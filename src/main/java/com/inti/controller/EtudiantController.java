@@ -66,7 +66,7 @@ public class EtudiantController {
 		}
 	}
 	
-	@PostMapping("updateEtudiant")
+	@PutMapping("updateEtudiant")
 	public boolean updateEtudiant(@RequestBody Etudiant etu) {
 		if (ier.getReferenceById(etu.getId()) != null) {
 			ier.save(etu);
