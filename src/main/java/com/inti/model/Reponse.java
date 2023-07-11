@@ -48,13 +48,13 @@ public class Reponse {
 
 	
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_etudiant")
 	@Exclude
 	private Etudiant etudiant;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_enseignant")
 	@Exclude

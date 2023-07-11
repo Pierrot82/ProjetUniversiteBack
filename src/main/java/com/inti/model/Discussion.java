@@ -47,7 +47,7 @@ public class Discussion {
 	
 	
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_etudiant")
 	@Exclude
