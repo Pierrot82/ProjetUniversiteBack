@@ -32,9 +32,36 @@ public class PostulantController {
 	
 	
 	@PostMapping("savePostulant")
-	public Postulant savePostulant(@RequestBody Postulant Postulant)
+	public boolean savePostulant(@RequestBody Postulant postulant)
 	{
-		return ipr.save(Postulant);
+		try {
+			ipr.save(postulant);
+			return true;	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	@PostMapping("refuserPostulant")
+	public boolean refuserPostulant(@RequestBody Postulant postulant) {
+		
+		if(postulant.getStatut().equalsIgnoreCase("En attente")){
+			postulant.setStatut("Refusé");
+			ipr.save(postulant);
+			return true;
+		}
+		else return false;
+	}
+	
+	@PostMapping("accepterPostulant")
+	public boolean accepterPostulant(@RequestBody Postulant postulant) {
+		if(postulant.getStatut().equalsIgnoreCase("En attente")){
+			postulant.setStatut("Accepté");
+			ipr.save(postulant);
+			return true;
+		}
+		else return false;
 	}
 	
 	@PutMapping("modifierPostulant")
