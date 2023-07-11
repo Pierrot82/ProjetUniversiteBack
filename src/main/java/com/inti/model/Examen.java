@@ -36,6 +36,7 @@ public class Examen {
 	private LocalDate date;
 	@Column(nullable = false)
 	private double duree;
+
 	
 	@Exclude
 	@JsonIgnore
