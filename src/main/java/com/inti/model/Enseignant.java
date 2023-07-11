@@ -44,8 +44,13 @@ public class Enseignant extends Personne{
 	@Exclude
 	@JsonIgnore
 	@ManyToOne
+	@JoinColumn(name = "id_matiere")
 	private Matiere matiere;
 	
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "enseignant")
+	@Exclude
+	private List<Reponse> listeReponse;	
 
 }

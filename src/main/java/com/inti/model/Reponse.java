@@ -14,8 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,38 +24,41 @@ import lombok.ToString.Exclude;
 @Entity @Table
 @Data @NoArgsConstructor @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
-public class Examen {
+public class Reponse {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idExamen;
-	@Column(nullable = false, length = 50)
-	private String intitule;
-	@Column(nullable = false)
-	private double coef;
-	@Column(nullable = false)
+	private int idReponse;
+	
+	@Column(unique = true, nullable = false, length = 50)
+	private String reponse;
+	
 	private LocalDate date;
-	@Column(nullable = false)
-	private double duree;
+
+	public Reponse(String reponse) {
+		super();
+		this.reponse = reponse;
+	}
+
+
+	@Exclude
+//	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "id_discussion")
+	private Discussion discussion;
 
 	
-	@Exclude
-	@JsonIgnore
-	@OneToOne
-	@JoinColumn(name = "id_correction")
-	private Correction correction;
 	
-	@Exclude
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "id_matiere")
-	private Matiere matiere;
-	
-	
+	@JoinColumn(name = "id_etudiant")
+	@Exclude
+	private Etudiant etudiant;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "idCopie.examen")
+	@ManyToOne
+	@JoinColumn(name = "id_enseignant")
 	@Exclude
-	private List<Copie> copie;
+	private Enseignant enseignant;
 	
-	
+
 }
