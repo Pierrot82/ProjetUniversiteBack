@@ -51,18 +51,27 @@ public class CoursController {
 		List<Double> listeMoyennes = new ArrayList<>();
 		
 		List<Cours> listeCours = listeCours();
+		double moy = 0;
+		int noteCinq;
+		int noteQuatre;
+		int noteTrois;
+		int noteDeux;
+		int noteUn;
 		
 		for( Cours cours : listeCours) {
-			int noteCinq = cours.getCinq()*5;
-			int noteQuatre = cours.getQuatre()*4;
-			int noteTrois = cours.getTrois()*3;
-			int noteDeux = cours.getDeux()*2;
-			int noteUn = cours.getUn()*1;
+			noteCinq = cours.getCinq()*5;
+			noteQuatre = cours.getQuatre()*4;
+			noteTrois = cours.getTrois()*3;
+			noteDeux = cours.getDeux()*2;
+			noteUn = cours.getUn()*1;
 			
-			double moy = (noteUn + noteDeux + noteTrois + noteQuatre + noteCinq)/
+			if((noteUn + noteDeux + noteTrois + noteQuatre + noteCinq)>0) {
+			moy = (noteUn + noteDeux + noteTrois + noteQuatre + noteCinq)/
 					(cours.getUn() + cours.getDeux() + cours.getTrois() + cours.getQuatre() + cours.getCinq());
-			
 			listeMoyennes.add(moy);
+			}
+			else
+				listeMoyennes.add(moy);
 		}
 
 		return listeMoyennes;
