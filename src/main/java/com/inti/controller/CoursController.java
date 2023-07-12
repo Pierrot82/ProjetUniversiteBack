@@ -1,5 +1,7 @@
 package com.inti.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,29 @@ public class CoursController {
 		Cours coursAvecIdMatiere = icr.getReferenceById(Cours.getIdCours());
 		Cours.setMatiere(coursAvecIdMatiere.getMatiere());
 		return icr.save(Cours);
+	}
+	
+	@GetMapping("getListeMoyennesNotesCours")
+	public List<Double> getListeMoyennesNotesCours() {
+		List<Double> listeMoyennes = new ArrayList<>();
+		
+		List<Cours> listeCours = listeCours();
+		
+		for( Cours cours : listeCours) {
+			int noteCinq = cours.getCinq()*5;
+			int noteQuatre = cours.getQuatre()*4;
+			int noteTrois = cours.getTrois()*3;
+			int noteDeux = cours.getDeux()*2;
+			int noteUn = cours.getUn()*1;
+			
+			double moy = (noteUn + noteDeux + noteTrois + noteQuatre + noteCinq)/
+					(cours.getUn() + cours.getDeux() + cours.getTrois() + cours.getQuatre() + cours.getCinq());
+			
+			listeMoyennes.add(moy);
+		}
+
+		return listeMoyennes;
+		
 	}
 	
 	@PutMapping("modifierCours/{id}")
