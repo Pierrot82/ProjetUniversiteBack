@@ -24,6 +24,7 @@ public class ExamenController {
 	@Autowired
 	IExamenRepository iexr;
 	
+	
 	@GetMapping("listeExamen")
 	public List<Examen> listeExamen()
 	{
@@ -77,5 +78,7 @@ public class ExamenController {
 	{
 		return iexr.getReferenceById(id);
 	}
+	
+
 
 }
