@@ -29,6 +29,11 @@ public class Cours {
 	private int idCours;
 	@Column(unique = true, nullable = false, length = 50)
 	private String nom;
+	private int un;
+	private int deux;
+	private int trois;
+	private int quatre;
+	private int cinq;
 
 	public Cours(String nom) {
 		super();

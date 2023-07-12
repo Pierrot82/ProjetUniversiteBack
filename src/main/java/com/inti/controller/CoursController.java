@@ -1,5 +1,7 @@
 package com.inti.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,46 @@ public class CoursController {
 	public Cours saveCours(@RequestBody Cours Cours)
 	{
 		return icr.save(Cours);
+	}
+	
+	@PostMapping("modifierNoteCours")
+	public Cours modifierNoteCours(@RequestBody Cours Cours)
+	{
+		Cours coursAvecIdMatiere = icr.getReferenceById(Cours.getIdCours());
+		Cours.setMatiere(coursAvecIdMatiere.getMatiere());
+		return icr.save(Cours);
+	}
+	
+	@GetMapping("getListeMoyennesNotesCours")
+	public List<Double> getListeMoyennesNotesCours() {
+		List<Double> listeMoyennes = new ArrayList<>();
+		
+		List<Cours> listeCours = listeCours();
+		double moy = 0;
+		int noteCinq;
+		int noteQuatre;
+		int noteTrois;
+		int noteDeux;
+		int noteUn;
+		
+		for( Cours cours : listeCours) {
+			noteCinq = cours.getCinq()*5;
+			noteQuatre = cours.getQuatre()*4;
+			noteTrois = cours.getTrois()*3;
+			noteDeux = cours.getDeux()*2;
+			noteUn = cours.getUn()*1;
+			
+			if((noteUn + noteDeux + noteTrois + noteQuatre + noteCinq)>0) {
+			moy = (noteUn + noteDeux + noteTrois + noteQuatre + noteCinq)/
+					(cours.getUn() + cours.getDeux() + cours.getTrois() + cours.getQuatre() + cours.getCinq());
+			listeMoyennes.add(moy);
+			}
+			else
+				listeMoyennes.add(moy);
+		}
+
+		return listeMoyennes;
+		
 	}
 	
 	@PutMapping("modifierCours/{id}")
