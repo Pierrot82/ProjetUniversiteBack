@@ -36,6 +36,14 @@ public class CoursController {
 		return icr.save(Cours);
 	}
 	
+	@PostMapping("modifierNoteCours")
+	public Cours modifierNoteCours(@RequestBody Cours Cours)
+	{
+		Cours coursAvecIdMatiere = icr.getReferenceById(Cours.getIdCours());
+		Cours.setMatiere(coursAvecIdMatiere.getMatiere());
+		return icr.save(Cours);
+	}
+	
 	@PutMapping("modifierCours/{id}")
 	public boolean modifierCours(@PathVariable("id") int id, @RequestBody Cours c) {
 	    Cours existingCours = icr.getReferenceById(id);
