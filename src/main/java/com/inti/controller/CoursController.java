@@ -1,10 +1,14 @@
 package com.inti.controller;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +25,8 @@ import com.inti.repository.ICoursRepository;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class CoursController {
+	Locale locale = Locale.FRANCE;
+	DecimalFormat df = new DecimalFormat("#.##", new DecimalFormatSymbols(locale));
 	
 	@Autowired
 	ICoursRepository icr;
@@ -52,28 +58,39 @@ public class CoursController {
 		
 		List<Cours> listeCours = listeCours();
 		double moy = 0;
-		int noteCinq;
-		int noteQuatre;
-		int noteTrois;
-		int noteDeux;
-		int noteUn;
+		String formatMoy;
+		double noteCinq;
+		double noteQuatre;
+		double noteTrois;
+		double noteDeux;
+		double noteUn;
 		
 		for( Cours cours : listeCours) {
-			noteCinq = cours.getCinq()*5;
-			noteQuatre = cours.getQuatre()*4;
-			noteTrois = cours.getTrois()*3;
-			noteDeux = cours.getDeux()*2;
-			noteUn = cours.getUn()*1;
+			noteCinq = cours.getCinq()*5.0;
+			noteQuatre = cours.getQuatre()*4.0;
+			noteTrois = cours.getTrois()*3.0;
+			noteDeux = cours.getDeux()*2.0;
+			noteUn = cours.getUn()*1.0;
 			
 			if((noteUn + noteDeux + noteTrois + noteQuatre + noteCinq)>0) {
 			moy = (noteUn + noteDeux + noteTrois + noteQuatre + noteCinq)/
 					(cours.getUn() + cours.getDeux() + cours.getTrois() + cours.getQuatre() + cours.getCinq());
+			
+			formatMoy = df.format(moy);
+			try {
+				moy = df.parse(formatMoy).doubleValue();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 			listeMoyennes.add(moy);
 			}
-			else
+			else if ((noteUn + noteDeux + noteTrois + noteQuatre + noteCinq) == 0){
+				moy=0;
 				listeMoyennes.add(moy);
+			}
 		}
-
+		System.out.println("liste finale = " + listeMoyennes);
 		return listeMoyennes;
 		
 	}
