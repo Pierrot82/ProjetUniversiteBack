@@ -69,7 +69,10 @@ public class DiscussionController {
 	
 
 	
-	
+	@GetMapping("listeDiscussionbyId1/{id}")
+	public List<Discussion> listeDiscussionbyId1(@PathVariable("id") int id) {
+		return idr.findAllById1(id);
+	}
 	
 	
 	

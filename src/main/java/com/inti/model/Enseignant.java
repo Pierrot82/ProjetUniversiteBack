@@ -33,6 +33,7 @@ public class Enseignant extends Personne{
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private LocalDate dateEmbauche;
 	
+	
 	@JsonIgnore
 	@ManyToMany
 	@Exclude
@@ -52,5 +53,11 @@ public class Enseignant extends Personne{
 	@OneToMany(mappedBy = "enseignant")
 	@Exclude
 	private List<Reponse> listeReponse;	
+	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "enseignant")
+	@Exclude
+	private List<Discussion> listeDiscussion;
 
 }
