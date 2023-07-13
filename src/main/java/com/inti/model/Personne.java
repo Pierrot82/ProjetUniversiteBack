@@ -37,6 +37,8 @@ public abstract class Personne {
 	@Column(nullable = true, length = 20)
 	protected LocalDate dateNaissance;
 	
-	
+//	@NonNull
+//	@Column(unique = true)
+//	protected String email;
 
 }

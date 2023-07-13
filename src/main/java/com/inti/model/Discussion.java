@@ -34,6 +34,7 @@ public class Discussion {
 	
 	private LocalDate date;
 	
+	
 
 	public Discussion(String question, LocalDate date) {
 		this.question = question;
@@ -52,6 +53,13 @@ public class Discussion {
 	@JoinColumn(name = "id_etudiant")
 	@Exclude
 	private Etudiant etudiant;
+	
+	
+//	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "id_destinataire")
+	@Exclude
+	private Enseignant enseignant;
 	
 
 }
