@@ -45,6 +45,17 @@ public class EtudiantController {
 		return ier.findAll();
 	}
 	
+	@GetMapping("loginEtudiant/{login}/{mdp}")
+	public int loginEtudiant(@PathVariable("login") String login, @PathVariable("mdp") String mdp) {
+		
+		try {
+			return ier.loginEtudiant(login, mdp);
+		} catch (Exception e) {
+			return 0;
+		}
+		
+	}
+	
 	
 	@GetMapping("getEtudiant/{id}")
 	public Etudiant getEtudiant(@PathVariable("id") int id) {

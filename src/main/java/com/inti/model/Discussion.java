@@ -1,11 +1,13 @@
 package com.inti.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +35,8 @@ public class Discussion {
 	private String question;
 	
 	private LocalDate date;
+
+	private LocalDateTime dateTime;
 	
 	
 
@@ -42,7 +46,7 @@ public class Discussion {
 	}
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "discussion")
+	@OneToMany(mappedBy = "discussion", cascade = CascadeType.ALL)
 	@Exclude
 	private List<Reponse> listeReponse;
 	

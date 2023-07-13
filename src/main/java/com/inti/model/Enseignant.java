@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,6 +33,14 @@ public class Enseignant extends Personne{
 //	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private LocalDate dateEmbauche;
+	
+	@Column(unique = true)
+	private String email;
+	
+	@Column(unique = true)
+	private String login;
+	
+	private String mdp;
 	
 	
 	@JsonIgnore
