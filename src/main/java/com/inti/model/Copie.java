@@ -1,6 +1,8 @@
 package com.inti.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 
@@ -16,6 +18,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table
 @Data @NoArgsConstructor @AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Copie {
 	
 	@EmbeddedId
