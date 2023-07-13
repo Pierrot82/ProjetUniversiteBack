@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.inti.model.Copie;
 import com.inti.model.CopieCompositeKey;
 import com.inti.model.Etudiant;
@@ -33,9 +34,14 @@ public class CopieController {
 	IExamenRepository iExamr;
 	
 	
-	@PostMapping("ajoutCopie")
-	public Copie ajoutCopie(@RequestBody Copie c ) {
-		return icr.save(c);
+	@GetMapping("saveCopie/{id}/{idExamen}/{note}")
+	public Copie saveCopie(@PathVariable ("id") int id, @PathVariable("idExamen") int idExamen, 
+			@PathVariable("note") double note)  {
+		Etudiant etu = iEtur.getReferenceById(id);
+		Examen exam = iExamr.getReferenceById(idExamen);
+		CopieCompositeKey idC = new CopieCompositeKey(etu, exam);
+		Copie copie = new Copie(idC, note);
+		return icr.save(copie);
 	}
 	
 	
