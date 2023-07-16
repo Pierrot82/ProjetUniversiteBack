@@ -52,7 +52,7 @@ public class Enseignant extends Personne{
 	private List<Etudiant> listeEtu;
 	
 	@Exclude
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_matiere")
 	private Matiere matiere;

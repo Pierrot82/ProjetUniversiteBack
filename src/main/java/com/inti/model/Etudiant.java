@@ -49,7 +49,7 @@ public class Etudiant extends Personne{
 	
 	@JsonIgnore
 	@ManyToMany
-	@Exclude
+	//@Exclude
 	@JoinTable(name = "Etu_enseignant",
 	joinColumns = @JoinColumn(name = "id_etudiant"),
 	inverseJoinColumns = @JoinColumn(name = "id_enseignant"))

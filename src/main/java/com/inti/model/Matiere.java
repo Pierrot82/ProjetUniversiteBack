@@ -41,5 +41,10 @@ public class Matiere {
 	@Exclude
 	@OneToMany(mappedBy = "matiere")
 	private List<Enseignant> listeEnseignant;
+	
+	@JsonIgnore
+	@Exclude
+	@OneToMany(mappedBy = "matiere")
+	private List<Postulant> listePostulant;
 
 }
