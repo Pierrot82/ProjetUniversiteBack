@@ -31,6 +31,16 @@ public class ExamenController {
 		return iexr.findAll();
 	}
 	
+	// les 2 ne marchent pas
+	@GetMapping("listeExamenRestantByEtudiant/{id}")
+	public List<Examen> listeExamenRestantByEtudiant(@PathVariable("id") int id){
+		return iexr.listeExamenRestantByEtudiant(id);
+	}
+	@GetMapping("listeExamenEffectueByEtudiant/{id}")
+	public List<Examen> listeExamenEffectueByEtudiant(@PathVariable("id") int id){
+		return iexr.listeExamenEffectueByEtudiant(id);
+	}
+	
 	
 	@PostMapping("saveExamen")
 	public Examen saveExamen(@RequestBody Examen Examen)
@@ -80,5 +90,6 @@ public class ExamenController {
 	}
 	
 
+	
 
 }

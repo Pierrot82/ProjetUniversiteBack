@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.inti.model.Enseignant;
 import com.inti.model.Etudiant;
 import com.inti.repository.IAdministrateurRepository;
+import com.inti.repository.IEnseignantRepository;
 import com.inti.repository.IEtudiantRepository;
 
 
@@ -34,15 +35,42 @@ public class EtudiantController {
 	@Autowired
 	IEtudiantRepository ier;
 	
+	@Autowired
+	IEnseignantRepository ienr;
 	
 	@PostMapping("ajoutEtudiant")
 	public Etudiant ajoutEtudiant(@RequestBody Etudiant etu ) {
+		System.out.println(etu);
 		return ier.save(etu);
 	}
+	
+	@PostMapping("ajoutEtudiantAffectee")
+	public Etudiant ajoutEtudiantAffectee(@RequestBody EtudiantIntArray body ) {
+		
+		Etudiant etu = body.getEtudiant();
+		List<Integer> listeIdEnseignant = body.getListeIdEnseignant();		
+		List<Enseignant> listEnseignant = ienr.getListEnseignantById(listeIdEnseignant);
+		etu.setListeEnseignant(listEnseignant);
+
+		return ier.save(etu);
+	}
+	
+	
 	
 	@GetMapping("getListeEtudiant")
 	public List<Etudiant> getListeEtudiant(){
 		return ier.findAll();
+	}
+	
+	@GetMapping("loginEtudiant/{login}/{mdp}")
+	public int loginEtudiant(@PathVariable("login") String login, @PathVariable("mdp") String mdp) {
+		
+		try {
+			return ier.loginEtudiant(login, mdp);
+		} catch (Exception e) {
+			return 0;
+		}
+		
 	}
 	
 	

@@ -75,6 +75,11 @@ public class ReponseController {
 	}
 	
 	
+	@GetMapping("getLastReponsesByIdDiscussion/{id}")
+	public Reponse getLastReponsesByIdDiscussion(@PathVariable("id") int id)
+	{
+		return ienr.findLastReponseByIdDiscussion(id);
+	}
 	
 	
     }
