@@ -19,7 +19,7 @@ Spring version 3.1.1
 -application REST API (partie back-end)  
 -partie front appelant cette API REST voir [ici](https://github.com/Pierrot82/ProjetUniversiteFront)  
 
-### Descritpif:
+### Descriptif:
 Application de gestion d'une université, de multiples services implémentés:  
 -Gestions des candidatures(cadidater, liste des candidats, gestion de leur affectation)  
 -Messagerie étudiants professeur()  
