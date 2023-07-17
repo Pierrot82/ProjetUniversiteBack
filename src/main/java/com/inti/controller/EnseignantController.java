@@ -36,6 +36,27 @@ public class EnseignantController {
 		return ienr.getReferenceById(id);
 	}
 	
+	
+	@GetMapping("loginEnseignant/{login}/{mdp}")
+	public int loginEnseignant(@PathVariable("login") String login, @PathVariable("mdp") String mdp) {
+		
+		try {
+			return ienr.loginEnseignant(login, mdp);
+		} catch (Exception e) {
+			return 0;
+		}
+		
+	}
+	
+	
+	
+	@GetMapping("getEnseignantbyEmail/{email}")
+	public Enseignant getEnseignantbyEmail(@PathVariable("email") String email)
+	{
+		return ienr.getEnseignantByEmail(email);
+	}
+	
+	
 	@PostMapping("saveEnseignant")
 	public Enseignant saveEnseignant(@RequestBody Enseignant en) {
 	    return ienr.save(en);

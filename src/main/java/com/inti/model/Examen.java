@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,8 +45,8 @@ public class Examen {
 	@JoinColumn(name = "id_correction")
 	private Correction correction;
 	
-	@Exclude
-	@JsonIgnore
+//	@Exclude
+//	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_matiere")
 	private Matiere matiere;
@@ -57,5 +58,10 @@ public class Examen {
 	@Exclude
 	private List<Copie> copie;
 	
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "examen", cascade = CascadeType.ALL)
+	@Exclude
+	private List<QcmQuestion> listeQcmQuestion;	
 	
 }

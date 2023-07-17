@@ -1,6 +1,7 @@
 package com.inti.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,6 +34,9 @@ public class Reponse {
 	private String reponse;
 	
 	private LocalDate date;
+	
+	private LocalDateTime dateTime;
+	
 
 	public Reponse(String reponse) {
 		super();

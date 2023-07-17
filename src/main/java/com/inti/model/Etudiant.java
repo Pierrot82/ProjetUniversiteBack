@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,6 +33,12 @@ public class Etudiant extends Personne{
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private LocalDate dateInscription;
 	
+	
+	@Column(unique = true)
+	private String login;
+	
+	private String mdp;
+	
 	@JsonIgnore
 	@ManyToMany
 	@Exclude
@@ -42,7 +49,7 @@ public class Etudiant extends Personne{
 	
 	@JsonIgnore
 	@ManyToMany
-	@Exclude
+	//@Exclude
 	@JoinTable(name = "Etu_enseignant",
 	joinColumns = @JoinColumn(name = "id_etudiant"),
 	inverseJoinColumns = @JoinColumn(name = "id_enseignant"))

@@ -19,4 +19,8 @@ public interface IReponseRepository extends JpaRepository<Reponse, Integer>{
 	@Query(value = "select * from reponse where id_discussion = :id ", nativeQuery = true)
 	List<Reponse> findAllByIdDiscussion(@Param("id") int idDiscussion);
 	
+	
+	@Query(value = "select * from reponse where id_discussion = :id AND date_time = (select (max(date_time)) FROM reponse WHERE id_discussion = :id )", nativeQuery = true)
+	Reponse findLastReponseByIdDiscussion(@Param("id") int idDiscussion);
+	
 }
