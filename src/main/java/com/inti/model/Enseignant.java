@@ -52,6 +52,7 @@ public class Enseignant extends Personne{
 	private List<Etudiant> listeEtu;
 	
 	
+	
 	@Exclude
 //	@JsonIgnore
 	@ManyToOne
