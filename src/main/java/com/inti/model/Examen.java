@@ -54,7 +54,7 @@ public class Examen {
 	
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "idCopie.examen")
+	@OneToMany(mappedBy = "idCopie.examen", cascade = CascadeType.ALL)
 	@Exclude
 	private List<Copie> copie;
 	
