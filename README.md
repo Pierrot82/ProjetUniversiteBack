@@ -1,5 +1,5 @@
 # ProjetUniversiteFront
-utilise la version 17 de Java 
+Utilise la version 17 de Java 
 
 ## Projet Spring boot 
 Spring version 3.1.1
@@ -16,8 +16,8 @@ Spring version 3.1.1
 -spring-boot-starter-thymeleaf  
 
 ## Description de l'application
--application REST API (partie back-end)  
--partie front appelant cette API REST voir [ici](https://github.com/Pierrot82/ProjetUniversiteFront)  
+-Application REST API (partie back-end)  
+-Partie front appelant cette API REST voir [ici](https://github.com/Pierrot82/ProjetUniversiteFront)  
 
 ### Descriptif:
 Application de gestion d'une université, de multiples services implémentés:  
