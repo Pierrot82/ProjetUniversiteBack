@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.inti.model.Matiere;
 import com.inti.model.Postulant;
+import com.inti.repository.IMatiereRepository;
 import com.inti.repository.IPostulantRepository;
 
 
@@ -23,6 +25,9 @@ public class PostulantController {
 	
 	@Autowired
 	IPostulantRepository ipr;
+	
+	@Autowired
+	IMatiereRepository imr;
 	
 	@GetMapping("listePostulant")
 	public List<Postulant> listePostulant()
@@ -42,6 +47,28 @@ public class PostulantController {
 		}
 		return false;
 	}
+	
+	
+	
+	@PostMapping("savePostulantMatiere/{id}")
+	public boolean savePostulantMatiere(@PathVariable("id") int id,@RequestBody Postulant postulant)
+	{
+		try {
+			
+			
+			Matiere mat = imr.getReferenceById(id);
+			postulant.setMatiere(mat);
+			ipr.save(postulant);
+			
+			return true;	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	
+	
 	
 	@PostMapping("refuserPostulant")
 	public boolean refuserPostulant(@RequestBody Postulant postulant) {

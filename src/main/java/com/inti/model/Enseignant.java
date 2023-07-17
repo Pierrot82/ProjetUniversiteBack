@@ -51,6 +51,8 @@ public class Enseignant extends Personne{
 	inverseJoinColumns = @JoinColumn(name = "id_etudiant"))
 	private List<Etudiant> listeEtu;
 	
+	
+	
 	@Exclude
 //	@JsonIgnore
 	@ManyToOne

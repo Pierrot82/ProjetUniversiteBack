@@ -19,8 +19,6 @@ public interface IEnseignantRepository extends JpaRepository<Enseignant, Integer
 	int loginEnseignant(@Param("login") String login, @Param("mdp") String mdp);
 	
 	
-	
-	
 	@Query(value = "select * from enseignant e, personne p where e.id=p.id AND e.email = :email ", nativeQuery = true)
 	Enseignant getEnseignantByEmail(@Param("email") String email);
 	
