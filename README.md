@@ -5,15 +5,15 @@ Version 17
 Spring version 3.1.1
 
 ### Dépendances utilisées
--spring-boot-starter-data-jpa
--spring-boot-starter-web
--spring-boot-devtools
--database h2
--mysql-connector-j
--lombok
--spring-boot-starter-tomcat
--spring-boot-starter-test
--spring-boot-starter-thymeleaf
+-spring-boot-starter-data-jpa  
+-spring-boot-starter-web  
+-spring-boot-devtools  
+-database h2  
+-mysql-connector-j  
+-lombok  
+-spring-boot-starter-tomcat  
+-spring-boot-starter-test  
+-spring-boot-starter-thymeleaf  
 
 ## Description de l'application
 -application REST API (partie back-end)
