@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
@@ -27,11 +28,10 @@ public class Postulant extends Personne {
 	
 	@Column(nullable = false, length = 10)
 	private String statut;
-	@Column(nullable = false)
+	@Column(nullable = false, length = 5000)
 	private String cv;
-	@Column(nullable = false)
+	@Column(nullable = false, length = 5000)
 	private String fichiers;
-	
 	@Column(unique = true, nullable = false)
 	private String email;
 	
