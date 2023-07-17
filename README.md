@@ -1,5 +1,5 @@
-## Version JAVA
-Version 17 
+# ProjetUniversiteFront
+utilise la version 17 de Java 
 
 ## Projet Spring boot 
 Spring version 3.1.1
