@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -54,7 +55,7 @@ public class Etudiant extends Personne{
 	private List<Enseignant> listeEnseignant;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "idCopie.etudiant")
+	@OneToMany(mappedBy = "idCopie.etudiant", cascade = CascadeType.ALL)
 	@Exclude
 	private List<Copie> copie;
 	
@@ -62,13 +63,13 @@ public class Etudiant extends Personne{
 	
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "etudiant")
+	@OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL)
 	@Exclude
 	private List<Discussion> listeDiscussion;
 	
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "etudiant")
+	@OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL)
 	@Exclude
 	private List<Reponse> listeReponse;	
 	
