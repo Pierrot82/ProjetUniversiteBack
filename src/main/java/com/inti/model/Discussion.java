@@ -55,14 +55,14 @@ public class Discussion {
 //	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_etudiant")
-	@Exclude
+//	@Exclude
 	private Etudiant etudiant;
 	
 	
 //	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_destinataire")
-	@Exclude
+//	@Exclude
 	private Enseignant enseignant;
 	
 
