@@ -18,5 +18,13 @@ public interface IEtudiantRepository extends JpaRepository<Etudiant, Integer>{
 	@Query(value = "select id from etudiant where login = :login AND mdp = :mdp ", nativeQuery = true)
 	int loginEtudiant(@Param("login") String login, @Param("mdp") String mdp);
 	
+	
+	
+	
+	@Query(value = "SELECT CASE WHEN COUNT(*) > 0 THEN ROUND(AVG(note), 2) ELSE -1 END FROM copie where id=:id  ", nativeQuery = true)
+	double getMoyEtudiant(@Param("id") int id);
+	
+	
+
 
 }

@@ -53,7 +53,7 @@ public class Enseignant extends Personne{
 	
 	
 	
-	@Exclude
+//	@Exclude
 //	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "id_matiere")

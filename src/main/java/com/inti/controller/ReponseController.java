@@ -1,5 +1,6 @@
 package com.inti.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.model.Reponse;
+import com.inti.model.Discussion;
 import com.inti.model.Etudiant;
 import com.inti.model.Examen;
+import com.inti.repository.IDiscussionRepository;
 import com.inti.repository.IReponseRepository;
 
 @RestController
@@ -23,6 +26,9 @@ public class ReponseController {
 	
 	@Autowired
 	IReponseRepository ienr;
+	
+	@Autowired
+	IDiscussionRepository idr;
 	
 	
 	@GetMapping("listeReponse")
@@ -76,9 +82,24 @@ public class ReponseController {
 	
 	
 	@GetMapping("getLastReponsesByIdDiscussion/{id}")
-	public Reponse getLastReponsesByIdDiscussion(@PathVariable("id") int id)
-	{
+	public Reponse getLastReponsesByIdDiscussion(@PathVariable("id") int id) {
 		return ienr.findLastReponseByIdDiscussion(id);
+	}
+	
+	
+	@GetMapping("getAllLastReponsesByIdDiscussion/{id}")
+	public List<Reponse> getAllLastReponsesByIdDiscussion(@PathVariable("id") int id) {
+		
+		List<Reponse> listRep = new ArrayList<>();
+		
+		for (Discussion disc:idr.findAllById1(id)) {
+			int idD = disc.getIdDiscussion();
+			Reponse r = ienr.findLastReponseByIdDiscussion(idD);
+			listRep.add(r);
+		}
+		System.out.println(listRep);
+		return listRep;
+		
 	}
 	
 	
