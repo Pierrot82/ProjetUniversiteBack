@@ -28,6 +28,7 @@ public class Etudiant extends Personne{
 
 //	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(nullable = false)
 	private LocalDate dateInscription;
 	
 	
