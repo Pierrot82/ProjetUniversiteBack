@@ -73,8 +73,4 @@ public class Etudiant extends Personne{
 	@Exclude
 	private List<Reponse> listeReponse;	
 	
-	
-	
-	
-	
 }
