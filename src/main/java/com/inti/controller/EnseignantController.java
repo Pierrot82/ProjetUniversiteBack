@@ -27,7 +27,7 @@ public class EnseignantController {
 	
 	@GetMapping("listeEnseignant")
 	public List<Enseignant> listeEnseignant() {
-		return ienr.findAll();
+		return ienr.findAllorder();
 	}
 
 	@GetMapping("getEnseignant/{id}")

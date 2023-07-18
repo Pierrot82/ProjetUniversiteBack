@@ -1,5 +1,6 @@
 package com.inti.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,24 @@ public class EtudiantController {
 	public List<Etudiant> getListeEtudiant(){
 		return ier.findAll();
 	}
+	
+	@GetMapping("getListeMoyEtudiant")
+	public List<Double> getListeMoyEtudiant(){
+		List<Double> listD = new ArrayList<>();
+		for(Etudiant etu:ier.findAll()) {
+
+			double moy = ier.getMoyEtudiant(etu.getId());
+			if (moy == -1) {
+				listD.add(null);
+			} else {
+				listD.add(moy);
+			}
+		
+		}
+		return listD;
+	}
+	
+	
 	
 	@GetMapping("loginEtudiant/{login}/{mdp}")
 	public int loginEtudiant(@PathVariable("login") String login, @PathVariable("mdp") String mdp) {

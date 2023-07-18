@@ -27,4 +27,9 @@ public interface IEnseignantRepository extends JpaRepository<Enseignant, Integer
 	List<Enseignant> getListEnseignantById(@Param("listInt") List<Integer> listInt);
 	
 	
+	@Query(value = "select * from enseignant e, personne p where e.id = p.id order by e.id_matiere, p.nom ", nativeQuery = true)
+	List<Enseignant> findAllorder();
+	
+	
+	
 }
