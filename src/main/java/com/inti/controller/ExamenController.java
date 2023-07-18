@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.inti.model.Copie;
 import com.inti.model.Examen;
 import com.inti.repository.IExamenRepository;
 
@@ -64,16 +65,10 @@ public class ExamenController {
 	@DeleteMapping("deleteExamen/{id}")
 	public boolean deleteExamen(@PathVariable("id")int id)
 	{
-//		Examen cm = iexr.getReferenceById(id);
-//		if(c != null)
-//		{
-//			iexr.delete(c);
-//			return true;
-//		}
-//		
-//		return false;
+
 		try {
 			Examen ex = iexr.getReferenceById(id);
+
 			System.out.println("Examen : " + ex);
 			iexr.delete(ex);
 			return true;
