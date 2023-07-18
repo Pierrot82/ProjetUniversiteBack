@@ -28,10 +28,18 @@ public class Postulant extends Personne {
 	
 	@Column(nullable = false, length = 10)
 	private String statut;
+	@Lob
 	@Column(nullable = false, length = 5000)
 	private String cv;
+	@Lob
 	@Column(nullable = false, length = 5000)
 	private String fichiers;
+	@Lob
+	@Column(nullable = true, length = 5000)
+	private String fichierUn;
+	@Lob
+	@Column(nullable = true, length = 5000)
+	private String fichierDeux;
 	@Column(unique = true, nullable = false)
 	private String email;
 	
